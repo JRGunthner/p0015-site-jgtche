@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:ror="http://rorweb.com/0.1/" >
+    <channel>
+        <title>ROR Sitemap for https://jgtche.com.br/</title>
+        <link>https://jgtche.com.br/</link>
+        <item>
+            <link>https://jgtche.com.br/</link>
+            <title>JGtche - Soluções em Tecnologia da Informação | Desenvolvimento, IA e Cloud Computing</title>
+            <description>JGtche oferece soluções completas em desenvolvimento de software, inteligência artificial, cloud computing, sistemas embarcados, automação e consultoria em TI. Transforme seu negócio com tecnologia de ponta em Porto Alegre, RS.</description>
+            <ror:updatePeriod></ror:updatePeriod>
+            <ror:sortOrder>0</ror:sortOrder>
+            <ror:resourceOf>sitemap</ror:resourceOf>
+        </item>
+    </channel>
+</rss>
