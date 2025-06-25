@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JGTche Instrumentos Musicais - Catálogo</title>
+    <link rel="canonical" href="https://jgtche.com.br/">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/style-catalogo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--vintage-light);
+            color: var(--vintage-dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--vintage-brown);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -5px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--vintage-gold);
+        }
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--vintage-dark-gray);
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background: var(--white);
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition-smooth);
+            opacity: 1;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+        .product-image {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+            background: #f5f5dc;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--vintage-brown);
+        }
+        .product-image img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            object-position: center;
+            transition: var(--transition-slow);
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(139, 69, 19, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        .btn-view {
+            background: var(--white);
+            color: var(--vintage-brown);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+        .btn-view:hover {
+            background: var(--vintage-gold);
+            color: var(--white);
+        }
+        .product-info {
+            padding: 20px;
+        }
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--vintage-brown);
+            margin-bottom: 10px;
+        }
+        .product-description {
+            font-size: 0.95rem;
+            color: var(--vintage-dark-gray);
+            margin-bottom: 15px;
+        }
+        .product-features {
+            margin-bottom: 15px;
+        }
+        .feature {
+            display: inline-block;
+            background: var(--vintage-gold);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--vintage-brown);
+        }
+        .btn-primary {
+            background: var(--vintage-brown);
+            color: var(--white);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+        .btn-primary:hover {
+            background: var(--vintage-gold);
+        }
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: var(--white);
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: var(--shadow-heavy);
+            position: relative;
+            text-align: center;
+        }
+        .close-button {
+            color: var(--vintage-dark-gray);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-button:hover, .close-button:focus {
+            color: var(--vintage-brown);
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-content h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--vintage-brown);
+            margin-bottom: 20px;
+        }
+        .modal-content p {
+            color: var(--vintage-dark-gray);
+            margin-bottom: 20px;
+        }
+        .modal-content .btn-primary {
+            margin-top: 10px;
+        }
+
+        /* Variáveis CSS */
+        :root {
+            --vintage-brown: #8B4513; /* SaddleBrown */
+            --vintage-gold: #DAA520; /* Goldenrod */
+            --vintage-cream: #F5F5DC; /* Beige */
+            --vintage-light: #FDF5E6; /* OldLace */
+            --vintage-dark: #36454F; /* Charcoal */
+            --vintage-dark-gray: #555;
+            --white: #FFFFFF;
+
+            --border-radius: 8px;
+            --border-radius-large: 12px;
+
+            --shadow-light: 0 2px 5px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.15);
+            --shadow-heavy: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+            --transition-smooth: all 0.3s ease;
+            --transition-slow: all 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Nosso Catálogo de Instrumentos</h2>
+            <p class="section-subtitle">Explore a coleção completa de instrumentos artesanais JGTche</p>
+        </div>
+        
+        <div class="products-grid">
+            <!-- Flauta Pan Indígena -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="assets/images/plauta-pan-indigena.jpg" alt="Flauta Pan Indígena">
+                    <div class="product-overlay">
+                        <button class="btn-view" data-product-name="Flauta Pan Indígena">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Flauta Pan Indígena</h3>
+                    <p class="product-description">
+                        Flauta de Pã artesanal inspirada nas tradições indígenas da América do Sul. 
+                        Produz sons melódicos e etéreos, ideal para músicas folclóricas e meditação.
+                    </p>
+                    <div class="product-features">
+                        <span class="feature">Bambu</span>
+                        <span class="feature">Artesanal</span>
+                        <span class="feature">Indígena</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="price">Consulte</span>
+                        <button class="btn btn-primary btn-contact">
+                            <i class="fas fa-whatsapp"></i>
+                            Contato
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bombo Leguero -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="assets/images/bombo-01.jpg" alt="Bombo Leguero">
+                    <div class="product-overlay">
+                        <button class="btn-view" data-product-name="Bombo Leguero">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Bombo Leguero</h3>
+                    <p class="product-description">
+                        Instrumento de percussão fundamental no folclore gaúcho e argentino. 
+                        Produz som grave e ressonante, perfeito para marcar o ritmo em danças campeiras.
+                    </p>
+                    <div class="product-features">
+                        <span class="feature">Percussão</span>
+                        <span class="feature">Couro</span>
+                        <span class="feature">Gaúcho</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="price">Consulte</span>
+                        <button class="btn btn-primary btn-contact">
+                            <i class="fas fa-whatsapp"></i>
+                            Contato
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flauta Barroca Missioneira -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="assets/images/flauta-barroca-missioneira.jpg" alt="Flauta Barroca Missioneira">
+                    <div class="product-overlay">
+                        <button class="btn-view" data-product-name="Flauta Barroca Missioneira">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Flauta Barroca Missioneira</h3>
+                    <p class="product-description">
+                        Inspirada nos instrumentos das missões jesuíticas do sul do Brasil. 
+                        Combina elegância barroca com a riqueza cultural da região missioneira.
+                    </p>
+                    <div class="product-features">
+                        <span class="feature">Barroca</span>
+                        <span class="feature">Histórica</span>
+                        <span class="feature">Missioneira</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="price">Consulte</span>
+                        <button class="btn btn-primary btn-contact">
+                            <i class="fas fa-whatsapp"></i>
+                            Contato
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rabeca -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="assets/images/rabeca.jpg" alt="Rabeca">
+                    <div class="product-overlay">
+                        <button class="btn-view" data-product-name="Rabeca">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Rabeca</h3>
+                    <p class="product-description">
+                        Instrumento de cordas friccionadas com sonoridade rústica e vibrante. 
+                        Essencial em diversas manifestações folclóricas, incluindo o fandango gaúcho.
+                    </p>
+                    <div class="product-features">
+                        <span class="feature">Cordas</span>
+                        <span class="feature">Friccionada</span>
+                        <span class="feature">Folclórica</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="price">Consulte</span>
+                        <button class="btn btn-primary btn-contact">
+                            <i class="fas fa-whatsapp"></i>
+                            Contato
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flauta Barroca -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="assets/images/flauta-barroca.jpg" alt="Flauta Barroca">
+                    <div class="product-overlay">
+                        <button class="btn-view" data-product-name="Flauta Barroca">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Flauta Barroca</h3>
+                    <p class="product-description">
+                        Flauta barroca clássica com design elegante e sonoridade rica. 
+                        Perfeita para repertórios de música antiga e para músicos que apreciam a pureza do som.
+                    </p>
+                    <div class="product-features">
+                        <span class="feature">Barroca</span>
+                        <span class="feature">Clássica</span>
+                        <span class="feature">Elegante</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="price">Consulte</span>
+                        <button class="btn btn-primary btn-contact">
+                            <i class="fas fa-whatsapp"></i>
+                            Contato
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gaita Ponto -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="assets/images/gaita-ponto.jpg" alt="Gaita Ponto">
+                    <div class="product-overlay">
+                        <button class="btn-view" data-product-name="Gaita Ponto">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Gaita Ponto</h3>
+                    <p class="product-description">
+                        Instrumento icônico da música gaúcha com som vibrante e expressivo. 
+                        Indispensável em bailes e festas campeiras. Modelo robusto e de alta durabilidade.
+                    </p>
+                    <div class="product-features">
+                        <span class="feature">Acordeon</span>
+                        <span class="feature">Gaúcha</span>
+                        <span class="feature">Durável</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="price">Consulte</span>
+                        <button class="btn btn-primary btn-contact">
+                            <i class="fas fa-whatsapp"></i>
+                            Contato
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Flauta Pan -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="assets/images/flauta-pan.jpg" alt="Flauta Pan">
+                    <div class="product-overlay">
+                        <button class="btn-view" data-product-name="Flauta Pan">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Flauta Pan</h3>
+                    <p class="product-description">
+                        Flauta de Pã clássica com tubos de diferentes tamanhos que produzem escala melódica suave. 
+                        Instrumento versátil para diversos gêneros musicais, do folclore à música ambiente.
+                    </p>
+                    <div class="product-features">
+                        <span class="feature">Bambu</span>
+                        <span class="feature">Melódica</span>
+                        <span class="feature">Versátil</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="price">Consulte</span>
+                        <button class="btn btn-primary btn-contact">
+                            <i class="fas fa-whatsapp"></i>
+                            Contato
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Maracá -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="assets/images/maraka.jpg" alt="Maracá">
+                    <div class="product-overlay">
+                        <button class="btn-view" data-product-name="Maracá">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Maracá</h3>
+                    <p class="product-description">
+                        Chocalho indígena utilizado em rituais e celebrações. 
+                        Produz som rítmico e envolvente, adicionando toque autêntico à percussão.
+                    </p>
+                    <div class="product-features">
+                        <span class="feature">Percussão</span>
+                        <span class="feature">Indígena</span>
+                        <span class="feature">Cabaça</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="price">Consulte</span>
+                        <button class="btn btn-primary btn-contact">
+                            <i class="fas fa-whatsapp"></i>
+                            Contato
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pau de Chuva -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="assets/images/pau-de-chuva.jpg" alt="Pau de Chuva">
+                    <div class="product-overlay">
+                        <button class="btn-view" data-product-name="Pau de Chuva">
+                            <i class="fas fa-eye"></i>
+                            Ver Detalhes
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Pau de Chuva</h3>
+                    <p class="product-description">
+                        Instrumento de efeito que simula o som da chuva. 
+                        Ideal para criar atmosferas relaxantes e efeitos sonoros em músicas e performances.
+                    </p>
+                    <div class="product-features">
+                        <span class="feature">Efeito Sonoro</span>
+                        <span class="feature">Bambu</span>
+                        <span class="feature">Relaxante</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="price">Consulte</span>
+                        <button class="btn btn-primary btn-contact">
+                            <i class="fas fa-whatsapp"></i>
+                            Contato
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Detalhes do Produto -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modalProductName"></h2>
+            <p>Detalhes completos do produto em breve!</p>
+            <p>Entre em contato conosco para mais informações.</p>
+            <button class="btn btn-primary btn-contact-modal">
+                <i class="fab fa-whatsapp"></i> Contato via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const viewButtons = document.querySelectorAll(".btn-view");
+            const modal = document.getElementById("productModal");
+            const closeButton = document.querySelector(".close-button");
+            const modalProductName = document.getElementById("modalProductName");
+            const contactModalButton = document.querySelector(".btn-contact-modal");
+
+            viewButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    const productName = this.getAttribute("data-product-name");
+                    modalProductName.textContent = productName;
+                    modal.style.display = "flex";
+                });
+            });
+
+            closeButton.addEventListener("click", function() {
+                modal.style.display = "none";
+            });
+
+            window.addEventListener("click", function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+
+            // Adicionar funcionalidade para botões de contato (WhatsApp)
+            const contactButtons = document.querySelectorAll(".btn-contact, .btn-contact-modal");
+            contactButtons.forEach(button => {
+                button.addEventListener("click", function() {
+                    const whatsappNumber = "5551999999999"; // Substitua pelo seu número de WhatsApp
+                    const message = "Olá, gostaria de mais informações sobre os instrumentos musicais da JGTche!";
+                    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+                    window.open(whatsappURL, "_blank");
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
