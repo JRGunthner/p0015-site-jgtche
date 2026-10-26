@@ -8,6 +8,7 @@
     <meta name="keywords" content="desenvolvimento de software, inteligência artificial, machine learning, cloud computing, sistemas embarcados, automação, consultoria TI, Porto Alegre, React, Python, AWS, DevOps">
     <meta name="author" content="JGtche">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#153d37">
 
     <!-- Open Graph Meta Tags para redes sociais -->
     <meta property="og:title" content="JGtche - Soluções em Tecnologia da Informação">
@@ -47,11 +48,6 @@
             "contactType": "customer service",
             "email": "jgtche@jgtche.com.br"
         },
-        "sameAs": [
-            "https://jgtche.com.br"
-        ],
-        "foundingDate": "2019",
-        "numberOfEmployees": "10-50",
         "industry": "Information Technology",
         "services": [
             "Desenvolvimento de Software",
@@ -67,22 +63,26 @@
         ]
     }
     </script>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="assets/icons/favicon-02/favicon-32x32.png" type="image/png">
+    <link rel="stylesheet" href="css/styles.css?v=5">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
     <!-- Header -->
     <header class="header">
-        <nav class="navbar">
+        <nav class="navbar" aria-label="Navegação principal">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <a href="#home" class="logo-link">
-                        <img src="assets/images/logo.png" alt="JGtche" class="logo">
+                    <a href="#home" class="logo-link" aria-label="JGtche — início">
+                        <img src="assets/images/logo.png" alt="" class="logo">
                         <span class="logo-text">JGtche</span>
                     </a>
                 </div>
-                <ul class="nav-menu">
+                <ul class="nav-menu" id="primary-navigation">
                     <li class="nav-item">
                         <a href="#home" class="nav-link">Início</a>
                     </li>
@@ -99,20 +99,22 @@
                         <a href="#contact" class="nav-link">Contato</a>
                     </li>
                 </ul>
-                <div class="hamburger">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
+                <button class="hamburger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="primary-navigation">
+                    <span class="bar" aria-hidden="true"></span>
+                    <span class="bar" aria-hidden="true"></span>
+                    <span class="bar" aria-hidden="true"></span>
+                </button>
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <main id="main-content">
+    <section id="home" class="hero" aria-labelledby="hero-title">
         <div class="hero-container">
             <div class="hero-content">
-                <h1 class="hero-title">
+                <p class="hero-eyebrow"><span aria-hidden="true"></span> Tecnologia com propósito, parceria de verdade</p>
+                <h1 class="hero-title" id="hero-title">
                     Transformando <span class="gradient-text">Ideias</span> em 
                     <span class="gradient-text">Soluções Tecnológicas</span>
                 </h1>
@@ -123,30 +125,30 @@
                 </p>
                 <div class="hero-buttons">
                     <a href="#services" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                         Nossos Serviços
                     </a>
                     <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-phone"></i>
+                        <i class="fas fa-comments" aria-hidden="true"></i>
                         Fale Conosco
                     </a>
                 </div>
             </div>
             <div class="hero-visual">
                 <div class="floating-elements">
-                    <div class="floating-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="floating-card">
                         <i class="fas fa-brain"></i>
                         <span>IA</span>
                     </div>
-                    <div class="floating-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="floating-card">
                         <i class="fas fa-code"></i>
                         <span>Dev</span>
                     </div>
-                    <div class="floating-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="floating-card">
                         <i class="fas fa-cloud"></i>
                         <span>Cloud</span>
                     </div>
-                    <div class="floating-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="floating-card">
                         <i class="fas fa-mobile-alt"></i>
                         <span>Mobile</span>
                     </div>
@@ -180,16 +182,16 @@
                     </p>
                     <div class="stats">
                         <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Projetos Entregues</div>
+                            <div class="stat-number">Sob medida</div>
+                            <div class="stat-label">Soluções para cada desafio</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">25+</div>
-                            <div class="stat-label">Anos de Experiência</div>
+                            <div class="stat-number">Ponta a ponta</div>
+                            <div class="stat-label">Da ideia à evolução</div>
                         </div>
                         <div class="stat-item">
-                            <div class="stat-number">100%</div>
-                            <div class="stat-label">Satisfação do Cliente</div>
+                            <div class="stat-number">Com parceria</div>
+                            <div class="stat-label">Construída junto com você</div>
                         </div>
                     </div>
                 </div>
@@ -358,7 +360,7 @@
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-handshake-alt"></i>
+                        <i class="fas fa-handshake"></i>
                     </div>
                     <h3>Consultoria Estratégica em TI</h3>
                     <p>Orientação especializada para empresas que buscam otimizar suas estratégias de TI, inovar e se adaptar às demandas do mercado digital.</p>
@@ -633,7 +635,7 @@
                         </div>
                         <div class="contact-details">
                             <h4>Telefone</h4>
-                            <p>+55 48 98869 0975</p>
+                            <p><a href="tel:+5548988690975">+55 48 98869 0975</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -642,7 +644,7 @@
                         </div>
                         <div class="contact-details">
                             <h4>Email</h4>
-                            <p>jgtche@jgtche.com.br</p>
+                            <p><a href="mailto:jgtche@jgtche.com.br">jgtche@jgtche.com.br</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -654,7 +656,7 @@
                         <div class="contact-details">
                             <h4>WhatsApp</h4>
                             <p>
-                                <a href="https://wa.me/5548988690975" target="_blank" rel="noopener">
+                                <a href="https://wa.me/5548988690975" target="_blank" rel="noopener noreferrer">
                                     +55 48 98869 0975
                                 </a>
                             </p>
@@ -665,15 +667,15 @@
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Nome</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" autocomplete="name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" autocomplete="email" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Telefone</label>
-                            <input type="tel" id="phone" name="phone">
+                            <input type="tel" id="phone" name="phone" autocomplete="tel">
                         </div>
                         <div class="form-group">
                             <label for="subject">Assunto</label>
@@ -692,40 +694,29 @@
                             <label for="message">Chasque</label>
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
+                        <p class="form-note">Ao continuar, uma conversa será preparada no WhatsApp. Você poderá revisar e enviar por lá.</p>
                         <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i>
-                            Enviar Mensagem
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                            Continuar pelo WhatsApp
                         </button>
+                        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
+    </main>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <div class="footer-logo">
-                        <img src="assets/images/logo.png" alt="JGtche" class="logo">
+                        <img src="assets/images/logo.png" alt="" class="logo">
                         <span class="logo-text">JGtche</span>
                     </div>
                     <p>Transformando ideias em soluções tecnológicas inovadoras.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </div>
                 </div>
                 <div class="footer-section">
                     <h4>Serviços</h4>
@@ -734,6 +725,7 @@
                         <li><a href="#services">Desenvolvimento de Software</a></li>
                         <li><a href="#services">Cloud Computing</a></li>
                         <li><a href="#services">Segurança da Informação</a></li>
+                        <li><a href="#services">Sistemas Embarcados &amp; IoT</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -742,26 +734,25 @@
                         <li><a href="#about">Sobre Nós</a></li>
                         <li><a href="#technologies">Tecnologias</a></li>
                         <li><a href="#contact">Contato</a></li>
-                        <li><a href="#">Política de Privacidade</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h4>Contato</h4>
                     <div class="footer-contact">
-                        <p><i class="fas fa-envelope"></i> jgtche@jgtche.com.br</p>
-                        <p><i class="fas fa-phone"></i> +55 48 98869 0975</p>
+                        <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:jgtche@jgtche.com.br">jgtche@jgtche.com.br</a></p>
+                        <p><i class="fas fa-phone" aria-hidden="true"></i> <a href="tel:+5548988690975">+55 48 98869 0975</a></p>
                         <p><i class="fas fa-map-marker-alt"></i> Porto Alegre, RS</p>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 JGtche. <i>"Aqui tem água pro chimarrão!"</i></p>
+                <p>&copy; 2026 JGtche. <i>"Aqui tem água pro chimarrão!"</i></p>
                 <p>CNPJ: 55.947.786/0001-40</p>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script src="js/script.js"></script>
+    <script src="js/script.js?v=2"></script>
 </body>
 </html>
