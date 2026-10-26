@@ -346,8 +346,8 @@ h6 {
 
 .floating-elements {
     display: grid;
-    width: min(100%, 390px);
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(100%, 520px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
     padding: 1.2rem 0;
     animation: float-gently 5s ease-in-out 700ms infinite;
@@ -1045,6 +1045,7 @@ section {
     .floating-elements {
         width: 100%;
         max-width: 460px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .about-content,
